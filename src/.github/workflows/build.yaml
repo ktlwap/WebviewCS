@@ -1,0 +1,44 @@
+name: Build Pipeline
+on: [push, pull_request]
+
+jobs:
+  build-linux:
+    strategy:
+      matrix:
+        cxx_std: [c++11, c++14, c++17, c++20]
+    runs-on: ubuntu-latest
+    env:
+      CXX_STD: ${{ matrix.cxx_std }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install libwebkit2gtk-4.0-dev xvfb -y
+      - name: Build and run tests
+        run: cd webview && xvfb-run ./script/build.sh info clean format deps check build test
+
+  build-macos:
+    strategy:
+      matrix:
+        cxx_std: [c++11, c++14, c++17, c++20]
+    runs-on: macos-latest
+    env:
+      CXX_STD: ${{ matrix.cxx_std }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build and run tests
+        run: cd webview && ./script/build.sh info clean format deps check build test
+
+  build-windows-msvc:
+    strategy:
+      matrix:
+        cxx_std: [c++14, c++17, c++20]
+        arch: [x64, x86]
+    runs-on: windows-latest
+    env:
+      CXX_STD: ${{ matrix.cxx_std }}
+      TARGET_ARCH: ${{ matrix.arch }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build and run tests
+        run: cd webview && ./script/build.bat info clean format deps check build test
+        shell: cmd
