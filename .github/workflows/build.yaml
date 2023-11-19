@@ -109,10 +109,10 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: macos-x64-webview-library
-          path: src/WebView/runtimes/osx-x86/native
+          path: src/WebView/runtimes/osx-x64/native
       - run: |
           git config --global user.name 'ktlwap Automation Bot'
           git config --global user.email 'ktlwap@users.noreply.github.com'
           git add -A
-          git commit -am "Created new library builds"
+          git commit -am "Update native libraries"
           git push
