@@ -10,7 +10,10 @@ jobs:
     env:
       CXX_STD: ${{ matrix.cxx_std }}
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout sources
+        uses: actions/checkout@v3
+        with:
+          submodules: "true"
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install libwebkit2gtk-4.0-dev xvfb -y
       - name: Build and run tests
@@ -24,7 +27,10 @@ jobs:
     env:
       CXX_STD: ${{ matrix.cxx_std }}
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout sources
+        uses: actions/checkout@v3
+        with:
+          submodules: "true"
       - name: Build and run tests
         run: ./webview/script/build.sh info clean format deps check build test
 
@@ -38,7 +44,10 @@ jobs:
       CXX_STD: ${{ matrix.cxx_std }}
       TARGET_ARCH: ${{ matrix.arch }}
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout sources
+        uses: actions/checkout@v3
+        with:
+          submodules: "true"
       - name: Build and run tests
         run: ./webview/script/build.bat info clean format deps check build test
         shell: cmd
