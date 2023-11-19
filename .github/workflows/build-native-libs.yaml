@@ -2,10 +2,10 @@ name: Build native library
 on: workflow_dispatch
 
 jobs:
-  build-linux:
+  build-linux-x64:
     strategy:
       matrix:
-        cxx_std: [c++17]
+        cxx_std: [c++20]
     runs-on: ubuntu-latest
     env:
       CXX_STD: ${{ matrix.cxx_std }}
@@ -98,6 +98,10 @@ jobs:
     steps:
       - name: Checkout sources
         uses: actions/checkout@v3
+      - uses: actions/download-artifact@v3
+        with:
+          name: linux-x64-webview-library
+          path: src/WebView/runtimes/linux-x64/native
       - uses: actions/download-artifact@v3
         with:
           name: windows-x64-webview-library
