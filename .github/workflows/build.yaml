@@ -5,7 +5,7 @@ jobs:
   build-linux:
     strategy:
       matrix:
-        cxx_std: [c++20]
+        cxx_std: [c++17]
     runs-on: ubuntu-latest
     env:
       CXX_STD: ${{ matrix.cxx_std }}
@@ -17,11 +17,11 @@ jobs:
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install libgtk-3-dev libwebkit2gtk-4.0-dev xvfb -y
       - name: Build and run tests
-        run: xvfb-run ./webview/script/build.sh info # clean format deps check build
-  #      - uses: actions/upload-artifact@v3
-  #        with:
-  #          name: linux-x64-webview-library
-  #          path: ./webview/build/library/libwebview.so
+        run: xvfb-run ./webview/script/build.sh
+      - uses: actions/upload-artifact@v3
+        with:
+          name: linux-x64-webview-library
+          path: ./webview/build/library/libwebview.so
 
   build-macos-x64:
     strategy:
