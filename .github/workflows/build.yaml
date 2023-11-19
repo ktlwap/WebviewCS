@@ -15,7 +15,7 @@ jobs:
         with:
           submodules: "true"
       - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install libgtk-3-0 libwebkit2gtk-4.0-37 xvfb -y
+        run: sudo apt-get update && sudo apt-get install libgtk-3-dev libwebkit2gtk-4.0-dev xvfb -y
       - name: Build and run tests
         run: xvfb-run ./webview/script/build.sh info clean format deps check build test
 
