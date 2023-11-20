@@ -1,10 +1,16 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Reflection;
+using System.Runtime.InteropServices;
 
 namespace WebView;
 
 public class WebView
 {
     private IntPtr _handle;
+
+    static WebView()
+    {
+        NativeLibrary.SetDllImportResolver(typeof(WebView).Assembly, ImportResolver);
+    }
 
     private WebView(IntPtr handle)
     {
@@ -113,4 +119,41 @@ public class WebView
     [DllImport("webview", CallingConvention = CallingConvention.Cdecl)]
     private static extern IntPtr webview_return(IntPtr window, [MarshalAs(UnmanagedType.LPStr)] string seq, int status,
         [MarshalAs(UnmanagedType.LPStr)] string result);
+    
+    private static IntPtr ImportResolver(string libraryName, Assembly assembly, DllImportSearchPath? searchPath)
+    {
+        if (libraryName != "webview")
+            return IntPtr.Zero;
+        
+        IntPtr libHandle = IntPtr.Zero;
+        if (OperatingSystem.IsWindows())
+        {
+            if (Environment.Is64BitProcess)
+                NativeLibrary.TryLoad("./runtimes/win-x64/native/webview.dll", assembly, searchPath,  out libHandle);
+            else
+                NativeLibrary.TryLoad("./runtimes/win-x86/native/webview.dll", assembly, searchPath,  out libHandle);
+        }
+        else if (OperatingSystem.IsMacOS())
+        {
+            if (IsArm64())
+                NativeLibrary.TryLoad("./runtimes/osx-arm64/native/libwebview.dylib", assembly, searchPath, out libHandle);
+            else
+                NativeLibrary.TryLoad("./runtimes/osx-x64/native/libwebview.dylib", assembly, searchPath, out libHandle);
+        }
+        else if (OperatingSystem.IsLinux())
+        {
+            if (IsArm64())
+                NativeLibrary.TryLoad("./runtimes/linux-arm64/native/libwebview.so", assembly, searchPath, out libHandle);
+            else
+                NativeLibrary.TryLoad("./runtimes/linux-x64/native/libwebview.so", assembly, searchPath, out libHandle);
+        }
+
+        if (libHandle == IntPtr.Zero)
+            throw new Exception("Platform not found.");
+        
+        return libHandle;
+    }
+    
+    private static bool IsArm64()
+        => RuntimeInformation.ProcessArchitecture == Architecture.Arm64;
 }
