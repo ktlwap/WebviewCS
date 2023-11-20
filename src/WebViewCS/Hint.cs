@@ -1,4 +1,4 @@
-﻿namespace WebView;
+﻿namespace WebViewCS;
 
 [Flags]
 public enum Hint
