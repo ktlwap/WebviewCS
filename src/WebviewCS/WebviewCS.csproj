@@ -5,6 +5,8 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <RootNamespace>WebViewCS</RootNamespace>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <Version />
     </PropertyGroup>
 
     <ItemGroup>
