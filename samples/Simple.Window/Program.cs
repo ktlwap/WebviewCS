@@ -9,7 +9,7 @@ class Program
     {
         WebView webView = WebView.Create();
         WebView.SetTitle(webView, "Simple.Window");
-        WebView.Navigate(webView, "https://google.at");
+        WebView.Navigate(webView, "https://google.com");
         WebView.Run(webView);
     }
 }
