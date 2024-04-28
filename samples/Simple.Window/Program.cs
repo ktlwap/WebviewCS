@@ -7,10 +7,10 @@ class Program
     [STAThread]
     static void Main(string[] args)
     {
-        WebView webView = WebView.Create();
-        WebView.SetSize(webView, 800, 600, Hint.None);
-        WebView.SetTitle(webView, "Simple.Window");
-        WebView.Navigate(webView, "https://google.com");
-        WebView.Run(webView);
+        Webview webview = Webview.Create();
+        Webview.SetSize(webview, 800, 600, Hint.None);
+        Webview.SetTitle(webview, "Simple.Window");
+        Webview.Navigate(webview, "https://google.com");
+        Webview.Run(webview);
     }
 }

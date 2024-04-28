@@ -7,7 +7,7 @@ namespace Silk.NET.Window;
 class Program
 {
     private static IWindow? _window;
-    private static WebView? _webView;
+    private static Webview? _webView;
 
     [STAThread]
     static void Main(string[] args)
@@ -20,7 +20,7 @@ class Program
         _window.Initialize();
         _window.Load += OnLoad;
         
-        _webView = WebView.Create(true, _window.Handle);
+        _webView = Webview.Create(true, _window.Handle);
         
         _window.Run();
         _window.Dispose();
@@ -28,7 +28,7 @@ class Program
 
     private static void OnLoad()
     {
-        WebView.Navigate(_webView, "https://google.com");
-        WebView.Run(_webView);
+        Webview.Navigate(_webView, "https://google.com");
+        Webview.Run(_webView);
     }
 }
