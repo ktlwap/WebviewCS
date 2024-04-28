@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{6171B819-7DD2-4AAA-8708-0AB0CDCBF5AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebView", "src\WebView\WebView.csproj", "{1BAD82D1-41D0-4FA6-8A7C-C2DC0A87AB0D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebviewCS", "src\WebviewCS\WebviewCS.csproj", "{1BAD82D1-41D0-4FA6-8A7C-C2DC0A87AB0D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simple.Window", "samples\Simple.Window\Simple.Window.csproj", "{8B0039AC-EB7C-4804-9020-6ABCE7E4E7F0}"
 EndProject

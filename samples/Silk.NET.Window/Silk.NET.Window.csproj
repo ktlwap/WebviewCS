@@ -12,7 +12,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\src\WebView\WebView.csproj" />
+      <ProjectReference Include="..\..\src\WebviewCS\WebviewCS.csproj" />
     </ItemGroup>
 
 </Project>

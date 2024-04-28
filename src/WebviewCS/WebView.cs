@@ -90,6 +90,9 @@ public class WebView
 
     [DllImport("webview", CallingConvention = CallingConvention.Cdecl)]
     private static extern IntPtr webview_get_window(IntPtr window);
+    
+    [DllImport("webview", CallingConvention = CallingConvention.Cdecl)]
+    private static extern IntPtr webview_get_native_handle(IntPtr window, int kind);
 
     [DllImport("webview", CallingConvention = CallingConvention.Cdecl)]
     private static extern IntPtr webview_set_title(IntPtr window, [MarshalAs(UnmanagedType.LPStr)] string title);
@@ -149,7 +152,7 @@ public class WebView
         }
 
         if (libHandle == IntPtr.Zero)
-            throw new Exception("Platform not found.");
+            throw new PlatformNotSupportedException();
         
         return libHandle;
     }

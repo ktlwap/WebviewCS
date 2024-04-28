@@ -1,6 +1,5 @@
 ﻿using Silk.NET.Maths;
 using Silk.NET.Windowing;
-using Silk.NET.Windowing.Glfw;
 using WebViewCS;
 
 namespace Silk.NET.Window;
