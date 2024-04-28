@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{6171B819-7DD2-4AAA-8708-0AB0CDCBF5AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebView", "src\WebView\WebView.csproj", "{1BAD82D1-41D0-4FA6-8A7C-C2DC0A87AB0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simple.Window", "samples\Simple.Window\Simple.Window.csproj", "{8B0039AC-EB7C-4804-9020-6ABCE7E4E7F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silk.NET.Window", "samples\Silk.NET.Window\Silk.NET.Window.csproj", "{A146369F-03B7-4754-A638-F884B4CCB28D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1BAD82D1-41D0-4FA6-8A7C-C2DC0A87AB0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BAD82D1-41D0-4FA6-8A7C-C2DC0A87AB0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BAD82D1-41D0-4FA6-8A7C-C2DC0A87AB0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BAD82D1-41D0-4FA6-8A7C-C2DC0A87AB0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B0039AC-EB7C-4804-9020-6ABCE7E4E7F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B0039AC-EB7C-4804-9020-6ABCE7E4E7F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B0039AC-EB7C-4804-9020-6ABCE7E4E7F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B0039AC-EB7C-4804-9020-6ABCE7E4E7F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A146369F-03B7-4754-A638-F884B4CCB28D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A146369F-03B7-4754-A638-F884B4CCB28D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A146369F-03B7-4754-A638-F884B4CCB28D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A146369F-03B7-4754-A638-F884B4CCB28D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8B0039AC-EB7C-4804-9020-6ABCE7E4E7F0} = {6171B819-7DD2-4AAA-8708-0AB0CDCBF5AB}
+		{A146369F-03B7-4754-A638-F884B4CCB28D} = {6171B819-7DD2-4AAA-8708-0AB0CDCBF5AB}
+	EndGlobalSection
+EndGlobal
