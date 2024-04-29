@@ -3,125 +3,67 @@ using System.Runtime.InteropServices;
 
 namespace WebViewCS;
 
-public class Webview
+public partial class Webview
 {
-    private IntPtr _handle;
-
-    static Webview()
+    public static Webview GetApi()
     {
         NativeLibrary.SetDllImportResolver(typeof(Webview).Assembly, ImportResolver);
+        return new Webview();
     }
 
-    private Webview(IntPtr handle)
-    {
-        _handle = handle;
-    }
-
-    public static Webview Create()
+    public WebviewHandle Create()
         => Create(false);
 
-    public static Webview Create(bool debug)
+    public WebviewHandle Create(bool debug)
         => Create(debug, IntPtr.Zero);
 
-    public static Webview Create(bool debug, IntPtr windowHandle)
+    public WebviewHandle Create(bool debug, IntPtr windowHandle)
         => new (webview_create(debug ? 1 : 0, windowHandle));
 
-    public static void Destroy(Webview webview)
-        => webview_destroy(webview._handle);
+    public void Destroy(WebviewHandle webview)
+        => webview_destroy(webview);
     
-    public static void Run(Webview webview)
-        => webview_run(webview._handle);
+    public void Run(WebviewHandle webview)
+        => webview_run(webview);
     
-    public static void Terminate(Webview webview)
-        => webview_terminate(webview._handle);
+    public void Terminate(WebviewHandle webview)
+        => webview_terminate(webview);
     
-    public static void SetTitle(Webview webview, string title)
-        => webview_set_title(webview._handle, title);
+    public void Dispatch(WebviewHandle webview, Action<IntPtr, IntPtr> callback)
+        => webview_dispatch(webview, (handle, args) => callback(handle, args), IntPtr.Zero);
     
-    public static void SetSize(Webview webview, int width, int height, Hint hint)
-        => webview_set_size(webview._handle, width, height, (int) hint);
+    public IntPtr GetWindow(WebviewHandle webview)
+        => webview_get_window(webview);
+
+    public IntPtr GetNativeHandle(WebviewHandle webview, NativeHandleKind kind)
+        => webview_get_native_handle(webview, (int)kind);
     
-    public static void Navigate(Webview webview, string url)
-        => webview_navigate(webview._handle, url);
+    public void SetTitle(WebviewHandle webview, string title)
+        => webview_set_title(webview, title);
     
-    public static void SetHtml(Webview webview, string html)
-        => webview_set_html(webview._handle, html);
+    public void SetSize(WebviewHandle webview, int width, int height, Hint hint)
+        => webview_set_size(webview, width, height, (int) hint);
     
-    public static void Init(Webview webview, string js)
-        => webview_init(webview._handle, js);
+    public void Navigate(WebviewHandle webview, string url)
+        => webview_navigate(webview, url);
     
-    public static void Eval(Webview webview, string js)
-        => webview_eval(webview._handle, js);
-
-    public static void Bind(Webview webview, string name, Action<string, string> callback)
-        => webview_bind(webview._handle, name, (id, req, _) => callback(id, req), IntPtr.Zero);
+    public void SetHtml(WebviewHandle webview, string html)
+        => webview_set_html(webview, html);
     
-    public static void Unbind(Webview webview, string name)
-        => webview_unbind(webview._handle, name);
+    public void Init(WebviewHandle webview, string js)
+        => webview_init(webview, js);
     
-    public static void Return(Webview webview, string seq, int status, string result)
-        => webview_return(webview._handle, seq, status, result);
+    public void Eval(WebviewHandle webview, string js)
+        => webview_eval(webview, js);
+
+    public void Bind(WebviewHandle webview, string name, Action<string, string> callback)
+        => webview_bind(webview, name, (id, req, _) => callback(id, req), IntPtr.Zero);
     
-    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-    private delegate void DispatchFunction(
-        IntPtr webview,
-        IntPtr args);
-
-    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-    private delegate void CallBackFunction(
-        [MarshalAs(UnmanagedType.LPStr)] string id,
-        [MarshalAs(UnmanagedType.LPStr)] string req,
-        IntPtr arg);
-
-    [DllImport("webview", CallingConvention = CallingConvention.Cdecl)]
-    private static extern IntPtr webview_create(int debug, IntPtr window);
-
-    [DllImport("webview", CallingConvention = CallingConvention.Cdecl)]
-    private static extern void webview_destroy(IntPtr window);
-
-    [DllImport("webview", CallingConvention = CallingConvention.Cdecl)]
-    private static extern void webview_run(IntPtr window);
-
-    [DllImport("webview", CallingConvention = CallingConvention.Cdecl)]
-    private static extern void webview_terminate(IntPtr window);
-
-    [DllImport("webview", CallingConvention = CallingConvention.Cdecl)]
-    private static extern void webview_dispatch(IntPtr webview, DispatchFunction dispatchFunction, IntPtr args);
-
-    [DllImport("webview", CallingConvention = CallingConvention.Cdecl)]
-    private static extern IntPtr webview_get_window(IntPtr window);
+    public void Unbind(WebviewHandle webview, string name)
+        => webview_unbind(webview, name);
     
-    [DllImport("webview", CallingConvention = CallingConvention.Cdecl)]
-    private static extern IntPtr webview_get_native_handle(IntPtr window, int kind);
-
-    [DllImport("webview", CallingConvention = CallingConvention.Cdecl)]
-    private static extern IntPtr webview_set_title(IntPtr window, [MarshalAs(UnmanagedType.LPStr)] string title);
-
-    [DllImport("webview", CallingConvention = CallingConvention.Cdecl)]
-    private static extern IntPtr webview_set_size(IntPtr window, int width, int height, int hints);
-
-    [DllImport("webview", CallingConvention = CallingConvention.Cdecl)]
-    private static extern IntPtr webview_navigate(IntPtr window, [MarshalAs(UnmanagedType.LPStr)] string url);
-
-    [DllImport("webview", CallingConvention = CallingConvention.Cdecl)]
-    private static extern IntPtr webview_set_html(IntPtr window, [MarshalAs(UnmanagedType.LPStr)] string html);
-
-    [DllImport("webview", CallingConvention = CallingConvention.Cdecl)]
-    private static extern IntPtr webview_init(IntPtr window, [MarshalAs(UnmanagedType.LPStr)] string js);
-
-    [DllImport("webview", CallingConvention = CallingConvention.Cdecl)]
-    private static extern IntPtr webview_eval(IntPtr window, [MarshalAs(UnmanagedType.LPStr)] string js);
-
-    [DllImport("webview", CallingConvention = CallingConvention.Cdecl)]
-    private static extern void webview_bind(IntPtr webview, [MarshalAs(UnmanagedType.LPStr)] string name,
-        CallBackFunction callback, IntPtr arg);
-
-    [DllImport("webview", CallingConvention = CallingConvention.Cdecl)]
-    private static extern IntPtr webview_unbind(IntPtr window, [MarshalAs(UnmanagedType.LPStr)] string name);
-
-    [DllImport("webview", CallingConvention = CallingConvention.Cdecl)]
-    private static extern IntPtr webview_return(IntPtr window, [MarshalAs(UnmanagedType.LPStr)] string seq, int status,
-        [MarshalAs(UnmanagedType.LPStr)] string result);
+    public void Return(WebviewHandle webview, string seq, int status, string result)
+        => webview_return(webview, seq, status, result);
     
     private static IntPtr ImportResolver(string libraryName, Assembly assembly, DllImportSearchPath? searchPath)
     {
