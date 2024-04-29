@@ -6,6 +6,7 @@
         <Nullable>enable</Nullable>
         <RootNamespace>WebViewCS</RootNamespace>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <IsTrimmable>true</IsTrimmable>
         <Version />
     </PropertyGroup>
 
