@@ -7,25 +7,30 @@
         <RootNamespace>WebViewCS</RootNamespace>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <IsTrimmable>true</IsTrimmable>
-        <Version />
+        <Version/>
     </PropertyGroup>
 
     <ItemGroup>
-      <None Update="runtimes\win-x86\native\webview.dll">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="runtimes\win-x64\native\webview.dll">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="runtimes\osx-x64\native\libwebview.dylib">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="runtimes\osx-arm64\native\libwebview.dylib">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="runtimes\linux-x64\native\libwebview.so">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
+        <None Update="runtimes\win-x86\native\webview.dll">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <Pack>true</Pack>
+        </None>
+        <None Update="runtimes\win-x64\native\webview.dll">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <Pack>true</Pack>
+        </None>
+        <None Update="runtimes\osx-x64\native\libwebview.dylib">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <Pack>true</Pack>
+        </None>
+        <None Update="runtimes\osx-arm64\native\libwebview.dylib">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <Pack>true</Pack>
+        </None>
+        <None Update="runtimes\linux-x64\native\libwebview.so">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <Pack>true</Pack>
+        </None>
     </ItemGroup>
 
 </Project>
