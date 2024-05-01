@@ -11,23 +11,23 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Include="lib\runtimes\win-x86\native\webview.dll">
+        <None Include="..\..lib\runtimes\win-x86\native\webview.dll" Visible="false">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
             <Pack>true</Pack>
         </None>
-        <None Include="lib\runtimes\win-x64\native\webview.dll">
+        <None Include="..\..lib\runtimes\win-x64\native\webview.dll" Visible="false">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
             <Pack>true</Pack>
         </None>
-        <None Include="lib\runtimes\osx-x64\native\libwebview.dylib">
+        <None Include="..\..lib\runtimes\osx-x64\native\libwebview.dylib" Visible="false">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
             <Pack>true</Pack>
         </None>
-        <None Include="lib\runtimes\osx-arm64\native\libwebview.dylib">
+        <None Include="..\..lib\runtimes\osx-arm64\native\libwebview.dylib" Visible="false">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
             <Pack>true</Pack>
         </None>
-        <None Include="lib\runtimes\linux-x64\native\libwebview.so">
+        <None Include="..\..lib\runtimes\linux-x64\native\libwebview.so" Visible="false">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
             <Pack>true</Pack>
         </None>
