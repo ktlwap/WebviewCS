@@ -35,7 +35,9 @@ jobs:
         with:
           submodules: true
       - name: Install dependencies
-        run: brew install cmake ninja doxygen clang-format llvm && export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+        run: brew install cmake ninja doxygen clang-format llvm
+      - name: Set environment variables
+        run: export WEBVIEW_CLANG_TIDY_EXE="/opt/homebrew/opt/llvm/bin"
       - name: Build
         run: cd webview && cmake -G "Ninja Multi-Config" -B build -S . && cmake --build build --config Release
       - uses: actions/upload-artifact@v3
@@ -55,7 +57,9 @@ jobs:
         with:
           submodules: true
       - name: Install dependencies
-        run: brew install cmake ninja doxygen clang-format llvm && export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+        run: brew install cmake ninja doxygen clang-format llvm && export
+      - name: Set environment variables
+        run: export WEBVIEW_CLANG_TIDY_EXE="/opt/homebrew/opt/llvm/bin"
       - name: Build
         run: cd webview && cmake -G "Ninja Multi-Config" -B build -S . && cmake --build build --config Release
       - uses: actions/upload-artifact@v3
