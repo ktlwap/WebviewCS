@@ -15,7 +15,7 @@ jobs:
         with:
           submodules: true
       - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install libgtk-3-dev libwebkit2gtk-4.0-dev cmake ninja-build libclang-cpp-dev doxygen -y
+        run: sudo apt-get update && sudo apt-get install libgtk-3-dev libwebkit2gtk-4.0-dev cmake ninja-build libclang-cpp-dev doxygen graphviz -y
       - name: Build
         run: cd webview && cmake -G "Ninja Multi-Config" -B build -S . && cmake --build build --config Release
       - uses: actions/upload-artifact@v3
