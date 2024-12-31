@@ -36,7 +36,7 @@ jobs:
           submodules: true
       - name: Install dependencies
         run: |
-          brew install cmake ninja clang-format llvm doxygen
+          brew install cmake ninja clang-format llvm doxygen graphviz
           ln -s "$(brew --prefix llvm)/bin/clang-format" "/usr/local/bin/clang-format"
           ln -s "$(brew --prefix llvm)/bin/clang-tidy" "/usr/local/bin/clang-tidy"
       - name: Build
