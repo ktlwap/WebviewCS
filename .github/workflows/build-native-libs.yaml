@@ -25,7 +25,7 @@ jobs:
   build-macos-arm64:
     strategy:
       matrix:
-        cxx_std: [c++20]
+        cxx_std: [c++23]
     runs-on: macos-15
     env:
       CXX_STD: ${{ matrix.cxx_std }}
