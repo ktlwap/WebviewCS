@@ -35,7 +35,7 @@ jobs:
         with:
           submodules: true
       - name: Install dependencies
-        run: brew install cmake ninja doxygen clang-format
+        run: brew install cmake ninja doxygen llvm
       - name: Build
         run: cd webview && cmake -G "Ninja Multi-Config" -B build -S . && cmake --build build --config Release
       - uses: actions/upload-artifact@v3
@@ -55,7 +55,7 @@ jobs:
         with:
           submodules: true
       - name: Install dependencies
-        run: brew install cmake ninja doxygen clang-format
+        run: brew install cmake ninja doxygen llvm
       - name: Build
         run: cd webview && cmake -G "Ninja Multi-Config" -B build -S . && cmake --build build --config Release
       - uses: actions/upload-artifact@v3
