@@ -15,7 +15,7 @@ jobs:
         with:
           submodules: true
       - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install libgtk-3-dev libwebkit2gtk-4.0-dev cmake ninja-build doxygen -y
+        run: sudo apt-get update && sudo apt-get install libgtk-3-dev libwebkit2gtk-4.0-dev cmake ninja-build libclang-cpp-dev -y
       - name: Build
         run: cd webview && cmake -G "Ninja Multi-Config" -B build -S . && cmake --build build --config Release
       - uses: actions/upload-artifact@v3
@@ -35,7 +35,7 @@ jobs:
         with:
           submodules: true
       - name: Install dependencies
-        run: brew install cmake ninja doxygen
+        run: brew install cmake ninja doxygen clang-format
       - name: Build
         run: cd webview && cmake -G "Ninja Multi-Config" -B build -S . && cmake --build build --config Release
       - uses: actions/upload-artifact@v3
@@ -55,7 +55,7 @@ jobs:
         with:
           submodules: true
       - name: Install dependencies
-        run: brew install cmake ninja doxygen
+        run: brew install cmake ninja doxygen clang-format
       - name: Build
         run: cd webview && cmake -G "Ninja Multi-Config" -B build -S . && cmake --build build --config Release
       - uses: actions/upload-artifact@v3
